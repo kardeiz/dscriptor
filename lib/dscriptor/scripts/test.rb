@@ -9,7 +9,7 @@ Dscriptor.perform do
   puts Bundle
 
   with_collection '116099117/236' do |c|
-    c.setMetadata('name', 'new name')
+    c.set_metadata('name', 'new name')
     c.update
     puts c.name
   end
