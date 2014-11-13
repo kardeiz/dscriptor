@@ -23,7 +23,7 @@ Dscriptor.configure do
   # add here any classes you would like to have access to
   # as an array of full package name strings. 
   # a number of classes are preloaded, see "lib/dscriptor.rb"
-  self.imports    << ['org.dspace.content.Bundle']
+  self.imports    << 'org.dspace.content.Bundle'
 end
 ```
 
