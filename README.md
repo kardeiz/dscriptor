@@ -20,10 +20,9 @@ Configure your settings:
 Dscriptor.configure do
   self.admin_email = 'your email'
   self.dspace_cfg  = 'path to your dspace.cfg file'
-  # add here any classes you would like to have access to
-  # as an array of full package name strings. 
+  # add here any classes you would like to have access to;
   # a number of classes are preloaded, see "lib/dscriptor.rb"
-  self.imports    << ['org.dspace.content.Bundle']
+  self.imports    << 'org.dspace.content.Bundle'
 end
 ```
 

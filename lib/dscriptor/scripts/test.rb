@@ -1,7 +1,7 @@
 Dscriptor.configure do
   self.admin_email = 'j.h.brown@tcu.edu'
   self.dspace_cfg  = '/home/jhbrown/projects/dspace4/config/dspace.cfg'
-  self.imports    << ['org.dspace.content.Bundle']
+  self.imports    << 'org.dspace.content.Bundle'
 end
 
 Dscriptor.perform do
