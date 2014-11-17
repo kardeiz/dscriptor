@@ -1,5 +1,3 @@
-
-
 Dscriptor.configure do
   self.admin_email = 'j.h.brown@tcu.edu'
   self.dspace_cfg  = '/home/jhbrown/projects/dspace4/config/dspace.cfg'
@@ -13,9 +11,9 @@ end
 Dscriptor.perform do
 
   with_collection '116099117/236' do |c|
-    admins = Group.find_by_name(context, "Administrator")
+    admins = Group.find_by_name(context, "Anonymous")
     AuthorizeManager.remove_all_policies(context, c)
-    AuthorizeManager.add_policy(context, c, Constants::WRITE, admins)
+    AuthorizeManager.add_policy(context, c, Constants::READ, admins)
     c.update
     items = c.items
     while item = items.next
