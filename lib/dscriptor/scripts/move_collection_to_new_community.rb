@@ -2,7 +2,7 @@ Dscriptor.configure do
   self.admin_email = 'j.h.brown@tcu.edu'
   self.dspace_cfg  = '/home/jhbrown/projects/dspace4/config/dspace.cfg'
   self.imports.merge [
-
+    'org.dspace.discovery.IndexClient'
   ]
 end
 
@@ -16,5 +16,7 @@ Dscriptor.perform do
   oldc.remove_collection(coll)
 
   puts coll.parent_object.name
+
+  IndexClient.main(['-b'])
 
 end
