@@ -6,50 +6,68 @@ A small gem to help create administrative task scripts for working with the DSpa
 
 Make sure you have a recent version of JRuby installed.
 
+I'm still ironing out the implementation details. For now, the easiest way to install/use this tool is to:
+
 Clone the repo: 
 
 `git clone https://github.com/kardeiz/dscriptor.git`
 
+Bundle:
+
+`bundle`
+
+You can then run your script like:
+
+`bundle exec jruby myscript.rb`
+
+See the `examples` directory for examples.
+
 ## Usage
 
-Create a new script `*.rb` file in `lib/dscriptor/scripts`.
 
-Configure your settings:
+Create a new script `*.rb` file.
+
+Require the gem and any other dependencies you might have:
 
 ```ruby
-Dscriptor.configure do
-  self.admin_email = 'your email'
-  self.dspace_cfg  = 'path to your dspace.cfg file'
-  # add here any classes you would like to have access to;
-  # a number of classes are preloaded, see "lib/dscriptor.rb"
-  self.imports    << 'org.dspace.content.Bundle'
+require 'dscriptor'
+```
+
+Configure the tool (add any java classes you need to the `imports` list so that you can access them more conveniently):
+
+```ruby
+Dscriptor.configure do |c|
+  c.dspace_cfg = ENV['DSPACE_CFG']
+  c.admin_email = ENV['ADMIN_EMAIL']
+  c.imports.merge %w{
+    org.dspace.authorize.AuthorizeManager
+    org.dspace.authorize.ResourcePolicy
+    org.dspace.storage.rdbms.TableRow
+  }
 end
 ```
 
-Load up the runtime context:
+Prepare the runtime:
 
 ```ruby
-Dscriptor.perform do
-  # your code goes here
-end
+Dscriptor.prepare
 ```
 
-On entering this block, the DSpace jars and configuration will be loaded, and specified classes will be imported to your current context. The DSpace `ServiceManager` will be started as well.
+This starts the DSpace kernel, requires all of the core `jar` files, and imports the specified java classes.
 
-Inside this scope you have access to a few convenience methods:
+Include the tool's `mixins` (optional):
 
-* `context` - your admin context
-* `with_{community, collection, item}` - used to lookup DSpaceObject by handle or ID, yields the object to a block
+```ruby
+include Dscriptor::Mixins
+```
 
-You can also access any of the loaded Java classes by name (e.g., `HandleManager`).
+This will add a number of convenience methods to your current context (e.g., `context`, which is the DSpace context for your admin user).
 
-The `perform` block will `complete` (close) your context for you on exit
+You can then do whatever you like within your script. Remember to call `context.complete` before exiting your script if you have made any changes to DSpace.
 
-Once you have completed your script, go back to your command line and:
+## Notes
 
-`script=[name of your script file without the extension] bundle exec rake perform`
-
-DSpace logging, as well as any `puts` commands in your script, will be output to the terminal.
+Versioning is very casual. Things will probably break between versions. Use at your own risk.
 
 ## Contributing
 
