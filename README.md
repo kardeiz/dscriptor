@@ -66,6 +66,8 @@ include Dscriptor::Mixins
 
 This will add a number of convenience methods to your current context (e.g., `context`, which is the DSpace context for your admin user).
 
+Note: if you have included these mixins in an IRB session, you will need to use `dspace_context` rather than `context`, since IRB has reserved `context` for its own use.
+
 You can then do whatever you like within your script. Remember to call `context.complete` before exiting your script if you have made any changes to DSpace.
 
 ## Notes
