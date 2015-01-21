@@ -69,6 +69,8 @@ You can then do whatever you like within your script. Remember to call `context.
 
 Versioning is very casual. Things will probably break between versions. Use at your own risk.
 
+The examples here are for a DSpace 4.1 repository. It is possible that some of methods used are different for earlier or later versions.
+
 ## Contributing
 
 Pull requests are more than welcome. I'll be extending the gem only in my free time.
