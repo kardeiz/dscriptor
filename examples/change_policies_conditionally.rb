@@ -29,8 +29,7 @@ class Item
 
 end
 
-
-collection = HandleManager.resolve_to_object(context, '116099117/236')
+collection = HandleManager.resolve_to_object(context, 'some handle')
 anonymous  = Group.find_by_name(context, "Anonymous")
 items      = collection.items
 chk_date   = Date.new(2012, 10, 30)
@@ -45,10 +44,9 @@ while item = items.next do
 
   bitstreams.each do |bs|
     puts bs.name
-    # AuthorizeManager.remove_all_policies(context, bs)
-    # AuthorizeManager.add_policy(context, bs, Constants::READ, anonymous)
+    AuthorizeManager.remove_all_policies(context, bs)
+    AuthorizeManager.add_policy(context, bs, Constants::READ, anonymous)
   end
 end
 
-
-# context.complete
+context.complete
