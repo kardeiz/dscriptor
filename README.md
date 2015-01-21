@@ -4,7 +4,7 @@ A small gem to help create administrative task scripts for working with the DSpa
 
 ## Installation
 
-Make sure you have a recent version of JRuby installed.
+Make sure you have a [recent version of JRuby installed](http://jruby.org/getting-started).
 
 I'm still ironing out the implementation details. For now, the easiest way to install/use this tool is to:
 
