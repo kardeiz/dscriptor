@@ -29,9 +29,12 @@ class Item
 
 end
 
-collection = HandleManager.resolve_to_object(context, 'some handle')
+# change this to your handle
+collection = HandleManager.resolve_to_object(context, '116099117/236')
 anonymous  = Group.find_by_name(context, "Anonymous")
 items      = collection.items
+
+# change this to your cutoff date
 chk_date   = Date.new(2012, 10, 30)
 
 while item = items.next do

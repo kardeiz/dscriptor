@@ -47,6 +47,9 @@ Dscriptor.configure do |c|
 end
 ```
 
+Note: I'm using an environment variable to identify my path to dspace.cfg here, but you can also just hard code it into your script.
+
+
 Prepare the runtime:
 
 ```ruby
