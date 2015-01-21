@@ -43,7 +43,7 @@ while item = items.next do
   bitstreams = bundles.map { |bn| bn.bitstreams }.flatten
 
   bitstreams.each do |bs|
-    puts bs.name
+    puts "changing policies for #{bs.name}"
     AuthorizeManager.remove_all_policies(context, bs)
     AuthorizeManager.add_policy(context, bs, Constants::READ, anonymous)
   end
