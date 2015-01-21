@@ -18,9 +18,9 @@ coll = HandleManager.resolve_to_object(context, '116099117/236')
 oldc = HandleManager.resolve_to_object(context, '116099117/123')
 newc = HandleManager.resolve_to_object(context, '116099117/347')
 
-newc.add_collection(coll)
-oldc.remove_collection(coll)
+# newc.add_collection(coll)
+# oldc.remove_collection(coll)
 
 puts "Moved #{coll.name} from #{oldc.name} to #{newc.name}"
 
-context.complete
+# context.complete

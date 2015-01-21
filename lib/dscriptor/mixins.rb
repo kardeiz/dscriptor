@@ -1,15 +1,17 @@
 module Dscriptor
   module Mixins
 
-    def context
-      @context ||= Context.new.tap do |o|
+    def self.included(base)
+      base.send(:alias_method, :context, :dspace_context)
+    end
+
+    def dspace_context
+      @dspace_context ||= Context.new.tap do |o|
         next unless email = Dscriptor.config.admin_email
         next unless eperson = EPerson.find_by_email(o, email)
         o.current_user = eperson
       end
     end
-
-    alias_method :dspace_context, :context
 
     def with_dso(arg, klass = nil)
       obj = if String === arg
